@@ -1,0 +1,5 @@
+mongoURI: "mongodb://localhost:27017"
+bind:
+  http: 8080
+  grpc: 50051
+use_file: false

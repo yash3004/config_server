@@ -1,0 +1,74 @@
+syntax = "proto3";
+option go_package = "generated/protobuf/configpb";
+
+package configmaker;
+import "google/protobuf/empty.proto";
+
+enum FileType {
+  FILE_TYPE_TXT = 0;
+  FILE_TYPE_CSV = 1;
+  FILE_TYPEJ_JSON = 2;
+  FILE_TYPE_XML = 3;
+  FILE_TYPE_YAML = 4;
+}
+
+message add_config {
+  string user_id = 1;
+  string password = 2;
+  string filename = 3;
+  FileType file_type = 4;
+  bytes data = 5;
+}
+
+message update_config {
+  string user_id = 1;
+  string password = 2;
+  string filename = 3;
+  FileType file_type = 4;
+  bytes data = 5;
+}
+
+message delete_config {
+  string user_id = 1;
+  string password = 2;
+  string filename = 3;
+}
+
+message get_config {
+  string user_id = 1;
+  string password = 2;
+  string filename = 3;
+}
+
+message get_config_response {
+  string user_id = 1;
+  string filename = 2;
+  FileType file_type = 3;
+  bytes data = 4;
+}
+
+message add_user {
+  string user_id = 1;
+  string email = 2;
+  string name = 3;
+  string password = 4;
+}
+
+message update_user {
+  string user_id = 1;
+  string email = 2;
+  string name = 3;
+  string password = 4;
+}
+
+message delete_user { string user_id = 1; }
+
+service ConfigService {
+  rpc AddConfig(add_config) returns (google.protobuf.Empty);
+  rpc UpdateConfig(update_config) returns (google.protobuf.Empty);
+  rpc DeleteConfig(delete_config) returns (google.protobuf.Empty);
+  rpc AddUser(add_user) returns (google.protobuf.Empty);
+  rpc UpdateUser(update_user) returns (google.protobuf.Empty);
+  rpc DeleteUser(delete_user) returns (google.protobuf.Empty);
+  rpc GetConfig(get_config) returns (get_config_response);
+}
