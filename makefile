@@ -1,1 +1,0 @@
-prprotoc -I proto proto/*.proto --go-grpc_out=. --go_out=.
